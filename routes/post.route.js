@@ -33,7 +33,7 @@ const router = express.Router()
 
 //게시글 작성
 //localhost:3000/upload POST
-router.post('/upload', upload.single('image'), async (req, res) => {
+router.post('/upload', upload.single('img'), async (req, res) => {
   const { content } = req.body;
   console.log(req.file.destination, req.body);
   const imagefile = `/upload/${req.file.filename}`
