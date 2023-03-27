@@ -36,7 +36,7 @@ const router = express.Router()
 router.post('/upload', upload.single('img'), async (req, res) => {
   const { content } = req.body;
   console.log(req.file.destination, req.body);
-  const imagefile = req.file.filename
+  const imagefile = `/upload/${req.file.filename}`
   await Posts.create({
     img: imagefile,
     content,
@@ -49,7 +49,7 @@ router.post('/upload', upload.single('img'), async (req, res) => {
 
 //게시글 전체 조회
 //localhost:3000/upload GET
-router.get("/upload",express.static(path.join(__dirname,'uploads')),async (req, res) => {
+router.get("/upload",async (req, res) => {
 
   const posts = await Posts.findAll({
     raw: true,
